@@ -1,0 +1,164 @@
+﻿@model GreenSlate_Coding_Challenge.Models.InputModels.InputViewModel
+
+@{
+    ViewData["Title"] = "DrinksMachine";
+}
+
+<h1>Drinks Machine</h1>
+
+<hr />
+<div class="row">
+
+    <form asp-action="DrinksMachine">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="coinVals">
+            <div class="card p-2 mb-3">
+                <div class="row">
+                    @for (int i = 0; i < Model.CoinsInserted.Count; i++)
+                    {
+                        <div class="col-3">
+                            <label>@Model.CoinsInserted[i].Text</label>
+                            <input type="number" min="1" asp-for="CoinsInserted[i].Value" class="form-control" />
+                            <input type="hidden" asp-for="CoinsInserted[i].Text" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="DrinksVal">
+            @for (int i = 0; i < Model.Machine.Products.Count; i++)
+            {
+                <div class="col-4">
+                    <div class="card text-white bg-dark mb-3 p-1">
+                        <div class="display-4 text-danger">@Model.Machine.Products[i].DrinkName</div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Price in Cents: </p>
+                            </div>
+                            <div class="col-6">
+                                <div class="DrinkPrice">@Model.Machine.Products[i].DrinkValueInCents</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Availabe in Stock: </p>
+                            </div>
+                            <div class="col-6">
+                                <label class="text-danger">@Model.Machine.Products[i].DrinkAmount</label>
+                            </div>
+                        </div>
+                        <input type="number" min="1" asp-for="DrinksBought[i].Value" class="form-control" />
+                        <input type="hidden" asp-for="DrinksBought[i].Text" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6">
+                <div class="display-4" id="totalView">Total in Cents: </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 subMission">
+            <div class="form-group">
+                <input type="hidden" asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="GET DRINKS" class="btn btn-block btn-success" />
+        </div>
+    </form>
+</div>
+
+
+<input type="hidden" id="showModal" name="canShowModal" value="@Model.Messages.Count" />
+<div class="modal fade" id="ModalMessage" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Transaction Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach (var message in Model.Messages)
+                {
+                    <p>@message</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        //Elements related variables
+        let totalInnerVal = $(".subMission input");
+        let totalOutterVal = $("#totalView");
+        let canShowModal = $("#showModal");
+        let modalMessage = $("#ModalMessage");
+        let drinksPrice = $("#DrinksVal .DrinkPrice");
+        let drinksPriceInputElems = $("#DrinksVal input[type=number]");
+
+        //Local scope variables
+        let totalCost = 0;
+        var drinksListElms = new Array();
+        var drinkListVals = new Array();
+
+
+        //Updates the total on Drinks selection change.
+        function AddTotal() {
+            let sum = 0;
+            for (let i = 0; i < drinkListVals.length; i++) {
+                if (drinksListElms[i].value) {
+                    let drinkAmount = parseFloat(drinksListElms[i].value);
+
+                    sum += drinkAmount > 0 ?
+                        parseFloat(drinkListVals[i]) * drinkAmount : 0;
+                }
+            }
+            $(totalOutterVal).text("Total in Cents: " + sum);
+            $(totalInnerVal).val(sum);
+        };
+
+
+        //Grab all the Drinks prices
+        $(drinksPrice).each(function () {
+            drinkListVals.push(this.innerHTML);
+        });
+
+        //Push all the drinks input elements
+        $(drinksPriceInputElems).each(function () {
+            drinksListElms.push(this);
+        })
+
+        //Every time the input chnages update the totla
+        $(drinksListElms).on('change', function () {
+            AddTotal();
+        });
+
+        //Show the modal if there are any messages to provide.
+        if ($(canShowModal).val() !== "0") {
+            $(modalMessage).modal();
+        }
+
+    </script>
+}

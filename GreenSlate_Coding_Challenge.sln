@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenSlate_Coding_Challenge", "GreenSlate_Coding_Challenge\GreenSlate_Coding_Challenge.csproj", "{5724C11D-F0BC-4E66-9CD4-44B2A6E56FFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5724C11D-F0BC-4E66-9CD4-44B2A6E56FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5724C11D-F0BC-4E66-9CD4-44B2A6E56FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5724C11D-F0BC-4E66-9CD4-44B2A6E56FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5724C11D-F0BC-4E66-9CD4-44B2A6E56FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B882E09-AD8B-4AAD-9CF0-67F1FB35EF22}
+	EndGlobalSection
+EndGlobal
