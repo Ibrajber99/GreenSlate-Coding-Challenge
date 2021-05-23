@@ -4,6 +4,8 @@ Greenslate Coding Challenge - Check readme for architecture decisions
 
 # Architecture
 
+# This task was accomplished using ASP.NET Core (MVC template).
+
 ## models
       -Drinks
         Base class that all drinks can be derived from.
