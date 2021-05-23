@@ -307,15 +307,23 @@ namespace GreenSlate_Coding_Challenge.BusinessLogic
             successMessage.Add("Drinks Bought: \n");
             foreach (var drink in transaction.DrinksBought)
             {
-                successMessage.Add($"{drink.DrinkName} amount: {drink.DrinkAmount}\n");
+                successMessage.Add($"{drink.DrinkName} amount---> {drink.DrinkAmount}\n");
             }
             successMessage.Add("\n\n");
             successMessage.Add("Change returned: \n");
 
-            foreach (var coin in transaction.RemainingChange)
+            if (transaction.RemainingChange.Count > 0)
             {
-                successMessage.Add($"{coin.Key} return: {coin.Value}\n");
+                foreach (var coin in transaction.RemainingChange)
+                {
+                    successMessage.Add($"{coin.Key} return---> {coin.Value}\n");
+                }
             }
+            else
+            {
+                successMessage.Add("NONE \n");
+            }
+
             successMessage.Add("\n\n");
 
             return successMessage;
