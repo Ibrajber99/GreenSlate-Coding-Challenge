@@ -6,9 +6,11 @@ Greenslate Coding Challenge - Check readme for architecture decisions
 
 ## models
       -Drinks
-        Base class that all drinks can be derived from
+        Base class that all drinks can be derived from.
       -Coins
-        Base class that all coins can be derived from
+        Base class that all coins can be derived from.
+       -Vending Machine
+        Base class that all other types of machines can be derived from.
 ## Data
     -Implented an In memory Repository pattern with Interfaces as a contract
     -Repositories are implemented as a Singlewton for data presestincy (Dependecies are specefied in Startup.cs)
