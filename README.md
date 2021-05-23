@@ -14,7 +14,7 @@ Greenslate Coding Challenge - Check readme for architecture decisions
     -Repositories are implemented as a Singlewton for data presestincy (Dependecies are specefied in Startup.cs)
     
 ## Business Logic
-    -Business logic is implmeneted in a class that handels all the reuired operations to meet rthe business requirements. 
+    -Business logic is implemented in a class that handels all the reuired operations to meet rthe business requirements. 
 
 ## Fron end Code
     -Simple JS code to show client side interactivity, while most heavy logic is on the server side. 
