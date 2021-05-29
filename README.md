@@ -14,12 +14,12 @@ Greenslate Coding Challenge - Check readme for architecture decisions
        -Vending Machine
         Base class that all other types of machines can be derived from.
 ## Data
-    -Implented an In memory Repository pattern with Interfaces as a contract
-    -Repositories are implemented as a Singlewton for data presestincy (Dependecies are specefied in Startup.cs)
+    -Implemented an In memory Repository pattern with Interfaces as a contract
+    -Repositories are implemented as a Singleton for data persistency (Dependencies are specified in Startup.cs)
     
 ## Business Logic
-    -Business logic is implemented in a class that handels all the reuired operations to meet rthe business requirements. 
+    -Business logic is implemented in a class that handles all the required operations to meet the business requirements. 
 
 ## Fron end Code
-    -Simple JS code to show client side interactivity, while most heavy logic is on the server side. 
+    -Simple JS code to show client-side interactivity, while most heavy logic is on the server-side. 
   
